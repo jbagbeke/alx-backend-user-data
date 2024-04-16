@@ -16,7 +16,7 @@ class Auth:
         """
         if not path or not excluded_paths or not len(excluded_paths):
             return True
-        
+
         if path[-1] != '/':
             if path + '/' in excluded_paths:
                 return False

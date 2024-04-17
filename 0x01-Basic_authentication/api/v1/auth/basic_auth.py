@@ -73,5 +73,5 @@ class BasicAuth(Auth):
             if len(valid_user) > 0:
                 if valid_user[0].is_valid_password(user_pwd):
                     return valid_user[0]
-                return None
+
         return None

@@ -26,7 +26,9 @@ def before_request() -> None:
     Runs before each request - also checks autorization
     """
     if auth:
-        excld = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+        excld = ['/api/v1/status/',
+                 '/api/v1/unauthorized/',
+                 '/api/v1/forbidden/']
 
         if auth.require_auth(request.path, excld):
             if not auth.authorization_header(request):

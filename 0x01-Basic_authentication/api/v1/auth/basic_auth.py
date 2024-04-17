@@ -17,12 +17,11 @@ class BasicAuth(Auth):
         """
         if not auth_header or type(auth_header) is not str:
             return None
-        
+
         if not auth_header.startswith('Basic '):
             return None
 
         authz = auth_header.split()[1]
-
         return authz
 
     def decode_base64_authorization_header(self, b64_auth_hdr: str) -> str:

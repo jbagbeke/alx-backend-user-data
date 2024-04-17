@@ -36,3 +36,20 @@ class BasicAuth(Auth):
             return authz_bytes.decode('utf-8')
         except Exception:
             return None
+
+    def extract_user_credentials(self, dcoded_b64_auth_hdr: str) -> (str, str):
+        """
+        Extracting user credentials of user
+        """
+        if not dcoded_b64_auth_hdr or type(dcoded_b64_auth_hdr) is not str:
+            return (None, None)
+        
+        if ':' not in dcoded_b64_auth_hdr:
+            return (None, None)
+
+        credentials = dcoded_b64_auth_hdr.split(':')
+
+        if len(credentials) != 2:
+            return (None, None)
+
+        return (credentials[0], credentials[1])

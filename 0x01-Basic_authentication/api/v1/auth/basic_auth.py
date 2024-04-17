@@ -27,4 +27,4 @@ class BasicAuth(Auth):
             authz_bytes = base64.b64decode(authz)
             return authz_bytes.decode('utf-8')
         except Exception:
-            return None
+            return authz

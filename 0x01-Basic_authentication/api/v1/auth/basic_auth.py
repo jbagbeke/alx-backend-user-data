@@ -61,7 +61,10 @@ class BasicAuth(Auth):
         """
         returns a user instance based on pwd and email else None
         """
-        if not user_email or not user_pwd:
+        if not user_email or type(user_email) is not str:
+            return None
+
+        if not user_pwd or type(user_pwd) is not str:
             return None
 
         if User.count() > 0:
@@ -71,3 +74,4 @@ class BasicAuth(Auth):
                 if valid_user[0].is_valid_password(user_pwd):
                     return valid_user[0]
                 return None
+        return None

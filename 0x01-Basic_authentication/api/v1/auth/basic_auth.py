@@ -23,10 +23,8 @@ class BasicAuth(Auth):
 
         authz = auth_header.split()[1]
 
-        return authz
-        # print(authz)
-        # try:
-        #     authz_bytes = base64.b64decode(authz)
-        #     return authz_bytes.decode('utf-8')
-        # except Exception:
-        #     return authz
+        try:
+            authz_bytes = base64.b64decode(authz)
+            return authz_bytes.decode('utf-8')
+        except Exception:
+            return None

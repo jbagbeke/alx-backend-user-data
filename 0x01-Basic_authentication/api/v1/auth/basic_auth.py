@@ -43,7 +43,7 @@ class BasicAuth(Auth):
         """
         if not dcoded_b64_auth_hdr or type(dcoded_b64_auth_hdr) is not str:
             return (None, None)
-        
+
         if ':' not in dcoded_b64_auth_hdr:
             return (None, None)
 

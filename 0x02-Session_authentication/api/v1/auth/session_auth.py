@@ -33,6 +33,5 @@ class SessionAuth(Auth):
 
         val =  SessionAuth.user_id_by_session_id["session_id"]
         print()
-        print("Kobby")
         print(val)
         print()

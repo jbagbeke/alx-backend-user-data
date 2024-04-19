@@ -48,8 +48,9 @@ class BasicAuth(Auth):
 
         if ':' not in dcoded_b64_auth_hdr:
             return (None, None)
-
-        credentials = dcoded_b64_auth_hdr.split(':')
+        
+        dcoded_b64_auth_hdr = dcoded_b64_auth_hdr.replace(':', ' ', 1)
+        credentials = dcoded_b64_auth_hdr.split(' ', 1)
 
         if len(credentials) != 2:
             return (None, None)

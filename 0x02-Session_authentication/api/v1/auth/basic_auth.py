@@ -98,4 +98,4 @@ class BasicAuth(Auth):
                                                                  creds[1])
 
                         if user:
-                            return user 
+                            return user

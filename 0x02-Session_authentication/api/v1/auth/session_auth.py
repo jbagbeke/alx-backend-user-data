@@ -19,8 +19,8 @@ class SessionAuth(Auth):
         """
         if not user_id or type(user_id) is not str:
             return None
-        session_id = uuid4()
-        self.user_id_by_session_id[session_id] = user_id
+        session_id = str(uuid4())
+        SessionAuth.user_id_by_session_id[session_id] = user_id
 
         return session_id
 
@@ -30,8 +30,4 @@ class SessionAuth(Auth):
         """
         if not session_id or type(session_id) is not str:
             return None
-
-        val = SessionAuth.user_id_by_session_id["session_id"]
-        print()
-        print(val)
-        print()
+        return SessionAuth.user_id_by_session_id.get(session_id, None)

@@ -31,7 +31,7 @@ class SessionAuth(Auth):
         if not session_id or type(session_id) is not str:
             return None
 
-        val =  SessionAuth.user_id_by_session_id["session_id"]
+        val = SessionAuth.user_id_by_session_id["session_id"]
         print()
         print(val)
         print()

@@ -49,7 +49,7 @@ class Auth:
         """
         if not request:
             return None
-        
+
         session_name_val = os.getenv("SESSION_NAME")
 
         if session_name_val:

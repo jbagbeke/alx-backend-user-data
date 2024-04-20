@@ -46,6 +46,5 @@ class SessionAuth(Auth):
                 user_instance = User.get(user_id)
 
                 if user_instance:
-                    print("You were here")
                     return user_instance
         return None

@@ -3,6 +3,7 @@
 Session authentication for the api
 """
 from api.v1.auth.auth import Auth
+from models.user import User
 from typing import TypeVar
 from uuid import uuid4
 import os
@@ -32,3 +33,19 @@ class SessionAuth(Auth):
         if not session_id or type(session_id) is not str:
             return None
         return SessionAuth.user_id_by_session_id.get(session_id, None)
+
+    def current_user(self, request=None):
+        """
+        AUthenticates current user
+        """
+        session_id = super().session_cookie(request)
+
+        if session_id:
+            user_id = self.user_id_for_session_id(session_id)
+            if user_id:
+                user_instance = User.get(user_id)
+
+                if user_instance:
+                    print("You were here")
+                    return user_instance
+        return None

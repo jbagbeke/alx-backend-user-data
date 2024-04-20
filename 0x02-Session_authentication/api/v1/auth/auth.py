@@ -50,6 +50,8 @@ class Auth:
         if not request:
             return None
         cookie_value = request.cookies.get("_my_session_id")
-        os.environ["SESSION_NAME"] = "_my_session_id"
 
-        return cookie_value
+        if cookie_value:
+            os.environ["SESSION_NAME"] = "_my_session_id"
+            return cookie_value
+        return None

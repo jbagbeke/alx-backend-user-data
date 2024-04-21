@@ -3,7 +3,7 @@
 Session management authorization for the api
 """
 from api.v1.views import app_views
-from flask import abort, jsonify, make_response, request
+from flask import abort, jsonify, request
 from models.user import User
 from api.v1.auth.session_auth import SessionAuth
 import os
@@ -41,3 +41,15 @@ def session_login():
             return jsonify({"error": "wrong password"}), 401
     except Exception as e:
         return jsonify({"error": "no user found for this email"}), 404
+
+
+@app_views.route('/auth_session/logout', methods=['DELETE'], strict_slashes=False)
+def delete_session():
+    """
+    Deletes user session
+    """
+    from api.v1.app import auth
+
+    if not auth.destroy_session(request):
+        abort(404)
+    return jsonify({}), 200

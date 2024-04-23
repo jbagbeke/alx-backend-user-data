@@ -56,7 +56,7 @@ class DB:
             raise NoResultFound
         return user
 
-    def update_user(self, user_id: int, **kwargs) -> str:
+    def update_user(self, user_id, **kwargs):
         """
         Updates attributes of a user object
         """
@@ -67,5 +67,6 @@ class DB:
 
             for key, value in kwargs.items():
                 setattr(user_obj, key, value)
+            return None
         except Exception as e:
             raise ValueError

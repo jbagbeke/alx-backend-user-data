@@ -35,9 +35,7 @@ class DB:
         Adds user to the database and returns user instance
         """
         user_instance = User(email=email,
-                             hashed_password=hashed_password,
-                             session_id=None,
-                             reset_token=None)
+                             hashed_password=hashed_password)
         self._session.add(user_instance)
         self._session.commit()
         return user_instance

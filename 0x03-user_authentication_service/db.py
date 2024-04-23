@@ -60,12 +60,10 @@ class DB:
         """
         Updates attributes of a user object
         """
-        try:
-            user_obj = self.find_user_by(id=user_id)
-
-            for key, value in kwargs.items():
-                setattr(user_obj, key, value)
-            self._session.commit()
-            return None
-        except Exception as e:
-            raise ValueError
+        user_obj = self.find_user_by(id=user_id)
+        for key, value in kwargs.items():
+            if not hasattr(user_obj, key):
+                raise ValueError            
+            setattr(user_obj, key, value)
+        self._session.commit()
+        return None

@@ -55,3 +55,18 @@ class DB:
         if not user:
             raise NoResultFound
         return user
+
+    def update_user(self, user_id: int, **kwargs):
+        """
+        Updates attributes of a user object
+        """
+        if not user_id or not kwargs:
+            raise ValueError
+
+        try:
+            user_obj = self.find_user_by(id=user_id)
+
+            for key, value in kwargs.items():
+                setattr(user_obj, key, value)
+        except Exception as e:
+            raise ValueError

@@ -49,9 +49,11 @@ class DB:
         by the method's input arguments
         """
         if not kwargs:
-            raise InvalidRequestError
-
-        user = self._session.query(User).filter_by(**kwargs).first()
-        if not user:
-            raise NoResultFound
-        return user
+            raise InvalidRequestError  
+        try:
+            user = self._session.query(User).filter_by(**kwargs).one()
+            return user
+        except NoResultFound as e:
+            raise e
+        except InvalidRequestError as e:
+            raise e

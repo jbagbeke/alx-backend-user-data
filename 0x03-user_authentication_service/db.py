@@ -51,9 +51,9 @@ class DB:
         for key, val in kwargs.items():
             try:
                 tmp_dct = {key: val}
-                user = self._session.query(User).filter_by(**tmp_dct).one()
+                user = self._session.query(User).filter_by(**tmp_dct).first()
+                if not user:
+                    raise NoResultFound
                 return user
-            except NoResultFound as e:
-                raise e
             except InvalidRequestError as e:
                 raise e

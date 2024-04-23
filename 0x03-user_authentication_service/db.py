@@ -65,6 +65,7 @@ class DB:
 
             for key, value in kwargs.items():
                 setattr(user_obj, key, value)
+            self._session.commit()
             return None
         except Exception as e:
             raise ValueError

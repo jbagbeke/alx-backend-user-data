@@ -38,4 +38,5 @@ class DB:
                              hashed_password=hashed_password)
         self._session.add(user_instance)
         self._session.commit()
+        self._session.close()
         return user_instance

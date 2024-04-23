@@ -48,10 +48,13 @@ class DB:
         the first row found in the users table as filtered
         by the method's input arguments
         """
-        try:
-            user = self._session.query(User).filter_by(**kwargs).one()
-            return user
-        except NoResultFound as e:
-            raise e
-        except InvalidRequestError as e:
-            raise e
+        attr = ['id', 'email', 'hashed_password',
+                'session_id', 'reset_token']
+        validity = True if all(key in attr for key in kwargs.keys()) else False
+        if not validity:
+            raise InvalidRequestError
+
+        user = self._session.query(User).filter_by(**kwargs).first()
+        if not user:
+            raise NoResultFound
+        return user

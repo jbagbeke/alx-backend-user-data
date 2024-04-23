@@ -7,13 +7,10 @@ Authorization authentication
 import bcrypt
 
 
-class Auth:
+def _hash_password(password: str) -> bytes:
     """
-    Autorization class definition
+    Password hashing function using bcrypt
     """
-    def _hash_password(password: str) -> bytes:
-        """
-        Password hashing function using bcrypt
-        """
-        hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-        return hashed_password
+    hashed_password = bcrypt.hashpw(password.encode('utf-8'),
+                                    bcrypt.gensalt())
+    return hashed_password

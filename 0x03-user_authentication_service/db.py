@@ -60,8 +60,6 @@ class DB:
         """
         Updates attributes of a user object
         """
-        if not user_id or not kwargs:
-            raise ValueError
         try:
             user_obj = self.find_user_by(id=user_id)
 

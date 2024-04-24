@@ -62,8 +62,6 @@ class Auth:
         """
         try:
             user = self._db.find_user_by(email=email)
-            if not user:
-                None
             user_uuid = _generate_uuid()
             self._db.update_user(user.id, session_id=user_uuid)
             return user_uuid

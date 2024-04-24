@@ -55,13 +55,13 @@ class Auth:
                                   user.hashed_password)
         except Exception:
             return False
-    
+
     def create_session(self, email: str) -> str:
         """
         Creates User session and stores in the database
         """
         try:
-            user = self._db.find_user_by(email=email) 
+            user = self._db.find_user_by(email=email)
             if not user:
                 None
             user_uuid = _generate_uuid()

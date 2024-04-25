@@ -70,7 +70,7 @@ def logout():
         abort(403)
     user = AUTH.get_user_from_session_id(user_session)
     if not user:
-        abort(403)
+        abort(403)l
     AUTH.destroy_session(user.id)
     return redirect(url_for('app_root'))    
 

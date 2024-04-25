@@ -2,7 +2,8 @@
 """
 User authentication flask application
 """
-from flask import Flask, abort, request, jsonify
+from flask import Flask, abort, request, jsonify, redirect
+from flask import url_for
 from auth import Auth
 
 
@@ -57,6 +58,21 @@ def sessions():
         return user_response
     except Exception:
         abort(401)
+
+
+@app.route('/sessions', methods=['DELETE'], strict_slashes=False)
+def logout():
+    """
+    Destroys User session
+    """
+    user_session = request.cookies.get("session_id")
+    if not user_session:
+        abort(403)
+    user = AUTH.get_user_from_session_id(user_session)
+    if not user:
+        abort(403)
+    AUTH.destroy_session(user.id)
+    return redirect(url_for('app_root'))    
 
 
 if __name__ == "__main__":
